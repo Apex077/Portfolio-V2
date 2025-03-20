@@ -45,7 +45,7 @@ export default function Hero() {
         whileTap={{ rotateY: 180 }} // Flip animation
       >
         <Image
-          src={flipped ? "/Images/face.jpg" : "/Images/Apex007_Logo.jpeg"} // Default logo, flips to face
+          src={flipped ? "/Images/Face.jpg" : "/Images/Apex007_Logo.jpeg"} // Default logo, flips to face
           alt="Profile Image"
           width={320}
           height={320}
