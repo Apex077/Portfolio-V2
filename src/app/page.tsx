@@ -9,6 +9,7 @@ import Footer from "@/components/Footer"
 export default function Home() {
   return (
     <Layout>
+      <div id="top"></div>
       <Navbar />
       <Hero />
       <About />

@@ -1,16 +1,22 @@
 "use client";
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import { motion } from "framer-motion";
-import { Github, BotMessageSquare, Linkedin, FileText, Menu, X } from "lucide-react";
-import Link from "next/link";
+import { Github, BotMessageSquare, Linkedin, Menu, X } from "lucide-react";
 
 export default function Navbar() {
-  const [mounted, setMounted] = useState(false);
-  const [isOpen, setIsOpen] = useState(false); // State for mobile menu
+  const [isOpen, setIsOpen] = useState(false);
 
-  useEffect(() => {
-    setMounted(true); // Ensures client-side rendering matches server output
-  }, []);
+  // Function to handle smooth scrolling
+  const handleScroll = (id: string) => {
+    const section = document.getElementById(id);
+    if (section) {
+      window.scrollTo({
+        top: section.offsetTop - 80, // Adjust offset for fixed navbar
+        behavior: "smooth",
+      });
+    }
+    setIsOpen(false); // Close menu on mobile after clicking
+  };
 
   return (
     <motion.nav
@@ -20,24 +26,27 @@ export default function Navbar() {
     >
       <div className="max-w-7xl mx-auto px-6 md:px-12 flex justify-between items-center py-4">
         
-        {/* Logo + Sci-Fi Icon */}
-        <div className="flex items-center space-x-3">
+        {/* Logo + Sci-Fi Icon (Clickable to Scroll to Top) */}
+        <div
+          onClick={() => handleScroll("top")}
+          className="flex items-center space-x-3 cursor-pointer"
+        >
           <BotMessageSquare className="text-green-400 w-8 h-8 animate-pulse" />
           <h1 className="text-2xl font-bold text-primary">
             &lt;Dharaneesh P/&gt;
           </h1>
         </div>
 
-        {/* Navigation Links (Centered) */}
-        <div className="hidden md:flex space-x-8 text-lg">
+        {/* Navigation Links (Desktop) */}
+        <div className="hidden md:flex space-x-6">
           {["About", "Skills", "Projects", "Contact"].map((section) => (
-            <Link
+            <button
               key={section}
-              href={`#${section.toLowerCase()}`}
-              className="text-white hover:text-green-400 transition-all duration-300"
+              onClick={() => handleScroll(section.toLowerCase())}
+              className="px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
             >
               {section}
-            </Link>
+            </button>
           ))}
         </div>
 
@@ -54,19 +63,18 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download="Dharaneesh_Resume.pdf"
-            className="flex items-center space-x-2 px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
+            className="px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
           >
-            <FileText className="w-5 h-5" />
-            <span>Resume</span>
+            Resume
           </a>
         </div>
 
-        {/* Mobile Menu Button */}
+        {/* Mobile Menu Button (Styled Like Resume Button) */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="md:hidden text-white"
+          className="md:hidden px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
         >
-          {isOpen ? <X className="w-8 h-8" /> : <Menu className="w-8 h-8" />}
+          {isOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
         </button>
       </div>
 
@@ -78,14 +86,13 @@ export default function Navbar() {
           className="md:hidden bg-black text-white absolute w-full left-0 top-[60px] shadow-lg flex flex-col items-center py-4 space-y-4"
         >
           {["About", "Skills", "Projects", "Contact"].map((section) => (
-            <Link
+            <button
               key={section}
-              href={`#${section.toLowerCase()}`}
-              className="text-lg hover:text-green-400 transition-all duration-300"
-              onClick={() => setIsOpen(false)}
+              onClick={() => handleScroll(section.toLowerCase())}
+              className="px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
             >
               {section}
-            </Link>
+            </button>
           ))}
 
           {/* Mobile Social Links */}
@@ -102,10 +109,9 @@ export default function Navbar() {
           <a
             href="/resume.pdf"
             download="Dharaneesh_Resume.pdf"
-            className="mt-4 flex items-center space-x-2 px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
+            className="px-4 py-2 bg-green-500 text-black font-bold rounded-lg shadow-md hover:bg-green-600 transition-all duration-300"
           >
-            <FileText className="w-5 h-5" />
-            <span>Resume</span>
+            Resume
           </a>
         </motion.div>
       )}
