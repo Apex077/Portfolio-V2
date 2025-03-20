@@ -2,6 +2,7 @@
 import { motion } from "framer-motion";
 import { useState } from "react";
 import Image from "next/image";
+import { Typewriter } from "react-simple-typewriter";
 
 export default function Hero() {
   const [flipped, setFlipped] = useState(false);
@@ -16,7 +17,14 @@ export default function Hero() {
       {/* Text Content - Responsive */}
       <div className="max-w-lg md:max-w-2xl mt-6 md:mt-0 md:ml-20">
         <h1 className="text-4xl sm:text-5xl md:text-7xl font-extrabold text-primary">
-          Hello, I'm Apex077
+          <Typewriter
+            words={["Hello, I'm Apex077!"]}
+            loop={1} // Typing only once
+            cursor
+            cursorStyle="_"
+            typeSpeed={50}
+            deleteSpeed={50}
+          />
         </h1>
         <p className="mt-4 sm:mt-6 text-lg sm:text-xl md:text-2xl text-gray-300">
           aka Dharaneesh Panneer Selvam
