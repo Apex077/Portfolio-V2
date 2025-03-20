@@ -11,9 +11,11 @@ const skills = [
 export default function Skills() {
   return (
     <motion.section
-      initial={{ opacity: 0, y: 30 }}
-      animate={{ opacity: 1, y: 0 }}
+      id = "skills"
+      initial={{ opacity: 0, y: 50 }}
+      whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6 }}
+      viewport={{ once: true, amount: 0.2 }} // Triggers animation when 20% of the section is in view
       className="p-10 mt-10"
     >
       <h2 className="text-3xl font-bold text-primary mb-6 glow-text">
@@ -21,11 +23,15 @@ export default function Skills() {
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6">
-        {skills.map((skill) => (
+        {skills.map((skill, index) => (
           <motion.div
             key={skill.category}
             className="p-4 bg-secondary border border-gray-700 rounded-lg shadow-lg"
             whileHover={{ scale: 1.05 }}
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: index * 0.2 }} // Stagger effect for each category
+            viewport={{ once: true, amount: 0.1 }}
           >
             <h3 className="text-xl font-semibold text-green-400">{skill.category}</h3>
             <div className="flex flex-wrap mt-3">
