@@ -28,10 +28,10 @@ export default function About() {
           className="max-w-lg md:max-w-2xl mt-10 md:mt-0 text-center md:text-left"
         >
           <p className="text-md sm:text-lg md:text-xl text-gray-400 leading-relaxed bg-opacity-10 backdrop-blur-lg p-6 rounded-lg border border-green-400 shadow-lg shadow-green-500/50">
-            Hey there! I'm Dharaneesh Panneer Selvam, a full-stack developer 🛠️  
+            {`Hey there! I'm Dharaneesh Panneer Selvam, a full-stack developer 🛠️  
             passionate about building cutting-edge web applications, AI, and scalable systems.  
             I love blending creativity with logic to craft seamless user experiences.  
-            Always eager to learn, innovate, and solve complex problems! 🚀
+            Always eager to learn, innovate, and solve complex problems! 🚀`}
           </p>
         </motion.div>
       </div>
