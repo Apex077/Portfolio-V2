@@ -8,7 +8,7 @@ interface Repo {
   name: string;
   description: string;
   html_url: string;
-  topics?: string[]; // GitHub API provides topics (tags)
+  topics?: string[];
 }
 
 export default function Projects() {
@@ -38,10 +38,17 @@ export default function Projects() {
             href={repo.html_url}
             target="_blank"
             rel="noopener noreferrer"
-            className="p-4 bg-secondary text-secondary-foreground border border-gray-700 rounded-lg shadow-lg hover:border-green-400 transition-all duration-300"
+            className="flex flex-col p-4 bg-secondary text-secondary-foreground border border-gray-700 rounded-lg shadow-lg hover:border-green-400 transition-all duration-300 overflow-hidden"
           >
-            <h3 className="text-xl font-semibold text-primary">{repo.name}</h3>
-            <p className="text-gray-400 mt-2">{repo.description || "No description provided."}</p>
+            {/* Project Name (Fixed Overflow) */}
+            <h3 className="text-xl font-semibold text-primary truncate">
+              {repo.name}
+            </h3>
+
+            {/* Project Description (Fixed Wrapping) */}
+            <p className="text-gray-400 mt-2 break-words whitespace-normal">
+              {repo.description || "No description provided."}
+            </p>
 
             {/* Display Category Tags */}
             {repo.topics && repo.topics.length > 0 && (
