@@ -26,7 +26,7 @@ export default function Skills() {
         {skills.map((skill, index) => (
           <motion.div
             key={skill.category}
-            className="p-4 bg-secondary border border-gray-700 rounded-lg shadow-lg"
+            className="p-4 bg-secondary border border-gray-700 rounded-lg shadow-lg hover:border-green-400 transition-all duration-300"
             whileHover={{ scale: 1.05 }}
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
